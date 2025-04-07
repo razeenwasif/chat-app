@@ -2,14 +2,24 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
-  const CustomTextField({super.key, required this.hintText});
+  final TextEditingController controller;
+  final FocusNode? focusNode;
+
+  const CustomTextField({
+    super.key, 
+    required this.hintText,
+    required this.controller,
+    required this.focusNode,
+  });
   
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
-        obscureText: hintText == "Password" ? true : false,
+        obscureText: hintText == "Password" || hintText == "Confirm Password" ? true : false,
+        controller: controller,
+        focusNode: focusNode,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary),
